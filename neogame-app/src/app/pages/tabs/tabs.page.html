@@ -1,0 +1,17 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom" class="border-t-[1px] border-gray-medium-second py-2">
+    <ion-tab-button tab="home">
+      <ion-icon src="assets/icons/gameControl.svg"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button tab="cart" class="relative">
+      <p *ngIf="cartService.gamesInCart().length > 0"
+        class="absolute top-0 right-20 bg-third text-white font-bold  text-sm flex justify-center items-center text-center rounded-full h-[1.2rem] w-[1.2rem]">
+        {{cartService.gamesInCart().length}}</p>
+      <ion-icon class="" src="assets/icons/cartShop.svg"></ion-icon>
+    </ion-tab-button>
+    <!-- 
+    <ion-tab-button tab="chats">
+      <ion-icon src="assets/icons/chat.svg"></ion-icon>
+    </ion-tab-button> -->
+  </ion-tab-bar>
+</ion-tabs>

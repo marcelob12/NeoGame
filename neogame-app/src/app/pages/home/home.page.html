@@ -1,0 +1,101 @@
+<ion-toolbar>
+  <div class="flex justify-center items-center bg-first">
+    <h1 class="text-center font-heading font-semibold text-2xl text-white">NEOGAME</h1>
+    <img class="h-[3rem] w-[3rem]" src="assets/icon/favicon2.png" alt="NeoGame Logo">
+  </div>
+</ion-toolbar>
+
+
+<ion-content [fullscreen]="true">
+  <div>
+
+    <div>
+      <swiper-container loop="true" autoplay="true">
+        <ng-container *ngFor="let game of gameService.allGames().slice(10,20)">
+          <swiper-slide class="flex justify-center items-center">
+            <div class="relative w-full h-full">
+              <img [src]="game.thumbnail" alt="Game Image" class="w-full h-full object-cover opacity-90">
+              <a (click)="saveGame(game)" class="font-semibold text-lg font-futuristic bg-third text-black px-4 py-2 rounded-md 
+                absolute bottom-2 left-2 ">
+                Ir ahora
+              </a>
+            </div>
+          </swiper-slide>
+        </ng-container>
+      </swiper-container>
+    </div>
+
+    <div>
+      <h2 class="pt-7 pb-4 text-white text-center font-futuristic font-semibold text-xl drop-shadow-2xl ">
+        Explorar por
+        categoría</h2>
+      <div class="w-full flex justify-end pr-4 ">
+        <p class="font-semibold font-futuristic underline " (click)="redirectGenre('all')">Ver todos</p>
+      </div>
+      <!-- Contenedor de Swiper -->
+      @if (!swiperVisible()) {
+
+      <div>
+
+        <swiper-container loop="true" autoplay="true" slides-per-view="2" space-between="40">
+          <ng-container *ngFor="let category of gameService.categories()">
+            <swiper-slide class="p-2 drop-shadow-xl">
+
+              <div (click)='redirectGenre(category.name)'
+                class="relative text-center bg-black rounded-md w-[200px] h-[250px] flex flex-col items-center justify-center ">
+                <img [src]="'assets/categoriesImages/'+ category.name +'.webp'" alt="{{category.name}}"
+                  class="w-full h-full object-cover rounded-md opacity-30 ">
+                <h2 class="text-white mt-2 font-semibold text-lg absolute font-futuristic"> {{ category.name }} </h2>
+              </div>
+            </swiper-slide>
+          </ng-container>
+        </swiper-container>
+      </div>
+      } @else {
+      <div>
+
+        <swiper-container loop="true" autoplay="true" slides-per-view="4" space-between="90">
+          <ng-container *ngFor="let category of gameService.categories()">
+            <swiper-slide class="p-2 drop-shadow-xl">
+
+              <div (click)='redirectGenre(category.name)'
+                class="relative text-center bg-black rounded-md w-[200px] h-[250px] flex flex-col items-center justify-center ">
+                <img [src]="'assets/categoriesImages/'+ category.name +'.webp'" alt="{{category.name}}"
+                  class="w-full h-full object-cover rounded-md opacity-30 ">
+                <h2 class="text-white mt-2 font-semibold text-lg absolute font-futuristic"> {{ category.name }} </h2>
+              </div>
+            </swiper-slide>
+          </ng-container>
+        </swiper-container>
+      </div>
+      }
+
+    </div>
+
+
+    <div class="flex-1">
+      <h2 class="py-7 text-white text-center font-futuristic font-semibold text-xl">Últimos lanzamientos</h2>
+
+      <!-- Contenedor en grid de 2 columnas -->
+      <div class="grid grid-cols-2  gap-4 p-4">
+        <div *ngFor="let game of gameService.latestReleases().slice(0,10)" class="bg-slate-500  text-white rounded-md">
+          <app-card-game (click)='saveGame(game)' [game]="game"></app-card-game>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div class="bg-orange-400 flex-1  ">
+      <h2 class="py-7 text-white text-center">Plataformas</h2>
+      <div class="bg-slate-500 p-4 text-white ">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem rerum nemo tempora quas nam harum reiciendis!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque optio temporibus sunt, impedit eum repellendus
+        debitis quia architecto id tempore reprehenderit inventore rem maxime asperiores corrupti veniam iure fugiat
+        eos!
+        Dicta neque unde sapiente, at porro necessitatibus, eius quis possimus error officia minus sed debitis aliquid
+        illo omnis veniam quo soluta, odit alias nobis? Consequuntur nobis molestias distinctio ex aliquid.
+      </div>
+    </div> -->
+
+  </div>
+</ion-content>

@@ -1,0 +1,7 @@
+<div *ngIf="(loaderService.isLoading$ | async)"
+  class="spinner-overlay absolute h-full w-full flex justify-center items-center z-50 flex-col font-bold">
+  <div class="bg-white rounded-lg p-2">
+    <img class="w-24 h-24" src="assets/loader.gif">
+  </div>
+  <p>Cargando...</p>
+</div>

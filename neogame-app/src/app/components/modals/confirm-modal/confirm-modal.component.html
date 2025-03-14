@@ -1,0 +1,11 @@
+<section class="text-center font-futuristic py-5 mx-auto w-[80%]">
+  <ion-icon class="text-primary w-8 h-8" src="{{'assets/icon/favicon.png'}}"></ion-icon>
+  <h2 class="font-bold text-xl">{{title}}</h2>
+  <p class="font-normal">{{message}}</p>
+  <div class="flex gap-4 mt-4 w-full">
+    <div (click)="close()" class="bg-primary rounded text-white bg-third py-1 w-full text-center">Cancelar
+    </div>
+    <div (click)="confirm()" class="border w-full py-1 border-first bg-fourth rounded text-first text-center  ">Aceptar
+    </div>
+  </div>
+</section>
