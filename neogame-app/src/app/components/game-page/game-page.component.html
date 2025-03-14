@@ -1,0 +1,56 @@
+<ion-content>
+  <div *ngIf="game">
+    <div class="bg-first rounded-b-3xl">
+      <div class="text-center relative font-futuristic">
+        <h2 class="text-center text-xl font-semibold absolute bg-black w-full bg-opacity-70 p-2">
+          {{ game.title }}
+        </h2>
+        <img [src]="game.thumbnail" alt="Game Image" class="w-full h-64 object-cover rounded-lg">
+      </div>
+      <p class="text-center bg-black bg-opacity-70 px-2">{{ game.short_description }}</p>
+
+      <h2 class="font-semibold font-futuristic text-2xl text-center py-3">Más Información</h2>
+      <div class="my-4 bg-second mx-5 rounded-xl grid grid-cols-1 text-center gap-4 py-7">
+        <div class="flex items-center gap-2 text-center justify-center">
+          <p><strong>Género:</strong> {{ game.genre }}</p>
+        </div>
+        <div>
+          <p><strong>Fecha de lanzamiento:</strong> {{ game.release_date |date}}
+        </div>
+        <div>
+          <p><strong>Plataformas:</strong> {{ game.platform }}</p>
+        </div>
+        <div>
+          <p><strong>Desarrollador:</strong> {{ game.developer }}</p>
+        </div>
+        <div>
+          <p><strong>Editor:</strong> {{ game.publisher }}</p>
+        </div>
+      </div>
+
+      <div class="flex justify-center flex-col gap-4">
+        <div (click)="addToCart(game)"
+          class="bg-green-500 p-3 rounded-3xl font-futuristic font-semibold text-black mx-14 text-center">
+          Añadir al carrito
+        </div>
+        <!-- Enlaces adicionales -->
+        <div class="text-center flex justify-center gap-3">
+          <a [href]="game.game_url" target="_blank" class="bg-third p-3 rounded-3xl font-futuristic">Visitar
+            sitio web</a>
+          <a [href]="game.freetogame_profile_url" target="_blank"
+            class="bg-fourth p-3 rounded-3xl font-futuristic text-black">Ver calificación</a>
+        </div>
+      </div>
+
+      <h2 class="font-semibold font-futuristic text-2xl text-center py-10">Más sobre {{ game.genre }}</h2>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 p-4">
+      <div *ngFor="let game of gameService.genreGame()" class="bg-slate-500 text-white rounded-md">
+        <app-card-game (click)="saveGame(game)" [game]="game"></app-card-game>
+      </div>
+    </div>
+  </div>
+
+
+</ion-content>
