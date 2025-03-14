@@ -1,8 +1,10 @@
 import { inject, Injectable, OnDestroy, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Game } from 'src/app/models/game.interface';
 import { Category } from 'src/app/models/game.interface';
 import { LoaderService } from '../loader/loader.service';
+import { environment } from 'src/environments/environment.prod';
+
 
 @Injectable({
   providedIn: 'root',
@@ -41,19 +43,28 @@ export class GamesService implements OnDestroy {
   }
 
   // Método para obtener todos los juegos
+
   getGames(): void {
     this.loader.showLoader();
 
-    this.http.get<Game[]>('/api/games').subscribe((games) => {
-      console.log(games);
-
-      this.allGames.set(games);  // Actualizamos el signal con todos los juegos
-      this.processGames(games);  // Procesamos los juegos más recientes
-      this.getLatestReleases(games);
+    const headers = new HttpHeaders({
+      'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+      'X-RapidAPI-Key': environment.rapidApiKey
     });
+
+    this.http.get<Game[]>('https://free-to-play-games-database.p.rapidapi.com/api/games', { headers })
+      .subscribe((games) => {
+        console.log(games);
+
+        this.allGames.set(games);  // Actualizamos el signal con todos los juegos
+        this.processGames(games);  // Procesamos los juegos más recientes
+        this.getLatestReleases(games);
+      });
 
     this.loader.hideLoader();
   }
+
+
 
   // Procesamos los juegos y actualizamos las categorías
   processGames(games: Game[]): void {
