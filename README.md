@@ -23,12 +23,13 @@ Esta es una aplicación desarrollada con **Angular 17**, **Ionic**, **Capacitor*
 cd nombre-del-repositorio
 
 3. Instala las dependencias:
- npm install
+ -npm install
 
 4.Si estás trabajando en un entorno de desarrollo web, puedes ejecutar el siguiente comando para arrancar el servidor de desarrollo:
-ionic build
-ionic cap add android
-ionic cap open android
+-ionic build
+-ionic cap add android
+-ionic cap sync android
+-ionic cap open android
 
 API
 La aplicación utiliza la API de Free-to-Play Games Database para obtener información sobre juegos gratuitos. Para evitar problemas de CORS al trabajar en un entorno local, la aplicación está configurada para pasar las solicitudes a través de un servidor proxy.
