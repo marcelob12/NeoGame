@@ -26,9 +26,13 @@ cd nombre-del-repositorio
  -npm install
 
 4.Si estás trabajando en un entorno de desarrollo web, puedes ejecutar el siguiente comando para arrancar el servidor de desarrollo:
+
 -ionic build
+
 -ionic cap add android
+
 -ionic cap sync android
+
 -ionic cap open android
 
 API
